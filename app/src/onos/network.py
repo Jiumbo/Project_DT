@@ -11,15 +11,15 @@ class Network(BaseModel):
     metrics: Optional[Metrics] = None
     clusters: Optional[Clusters] = None
 
-    def __init__(self, ip: str, **kwargs) -> None:
+    def __init__(self, ip: str = None, **kwargs) -> None:
         super().__init__(**kwargs)
-        RequestHandler(ip=ip)
+        if ip != None:
+            RequestHandler(ip=ip)
 
     def setup(self) -> bool:
         self.system = self.__set_system()
         self.metrics = self.__set_metrics()
         self.clusters = self.__set_clusters()
-
 
     def __set_clusters(self) -> Clusters:
         try:
