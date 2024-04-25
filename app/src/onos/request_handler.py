@@ -8,6 +8,7 @@ import requests
 class RequestHandler:
 
     url = "http://{ip}:8181/onos/v1/"
+    test_param = "docs/apis"
     user = "onos"
     password = "rocks"
     instantiated = False
@@ -33,3 +34,14 @@ class RequestHandler:
     @staticmethod
     def get_url():
         print(RequestHandler.url)
+
+    @staticmethod
+    def test_connection() -> bool:
+        res = requests.get(
+            url=RequestHandler.url + RequestHandler.test_param,
+            auth=(RequestHandler.user, RequestHandler.password),
+        )
+        if res.status_code == 200:
+            return True
+        else:
+            return False

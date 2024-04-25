@@ -16,6 +16,9 @@ class Network(BaseModel):
         if ip != None:
             RequestHandler(ip=ip)
 
+    def set_ip(self, ip: str) -> bool:
+        RequestHandler(ip=ip)
+
     def setup(self) -> bool:
         self.system = self.__set_system()
         self.metrics = self.__set_metrics()
