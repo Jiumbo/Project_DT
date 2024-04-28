@@ -11,18 +11,30 @@ class Network(BaseModel):
     metrics: Optional[Metrics] = None
     clusters: Optional[Clusters] = None
 
-    def __init__(self, ip: str = None, **kwargs) -> None:
+    def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        if ip != None:
-            RequestHandler(ip=ip)
 
-    def set_ip(self, ip: str) -> bool:
-        RequestHandler(ip=ip)
+    """Test the connection, if the connection is enstablished
+    the RequestHandler is setted otherwise not."""
+
+    def set_ip_address(self, ip: str) -> bool:
+        try:
+            if RequestHandler.test_connection(ip=ip):
+                print("Connection successful.")
+                RequestHandler(ip=ip)
+                return True
+        except:
+            print("Connection failed.")
+            return False
 
     def setup(self) -> bool:
-        self.system = self.__set_system()
-        self.metrics = self.__set_metrics()
-        self.clusters = self.__set_clusters()
+        if RequestHandler.is_instantiated:
+            self.system = self.__set_system()
+            self.metrics = self.__set_metrics()
+            self.clusters = self.__set_clusters()
+            return True
+        else:
+            return False
 
     def __set_clusters(self) -> Clusters:
         try:

@@ -11,13 +11,12 @@ class RequestHandler:
     test_param = "docs/apis"
     user = "onos"
     password = "rocks"
-    instantiated = False
+    is_instantiated = False
 
     def __init__(self, ip: str) -> None:
-        # self.url = self.url.format(ip=ip)
-        if not RequestHandler.instantiated:  # Singleton pattern
+        if not RequestHandler.is_instantiated:  # Singleton pattern
             RequestHandler.url = RequestHandler.url.format(ip=ip)
-            RequestHandler.instantiated = True
+            RequestHandler.is_instantiated = True
 
     @staticmethod
     def get_request(param: str) -> dict:
@@ -32,16 +31,8 @@ class RequestHandler:
             raise Exception
 
     @staticmethod
-    def get_url():
-        print(RequestHandler.url)
-
-    @staticmethod
-    def test_connection() -> bool:
-        res = requests.get(
-            url=RequestHandler.url + RequestHandler.test_param,
-            auth=(RequestHandler.user, RequestHandler.password),
-        )
-        if res.status_code == 200:
+    def test_connection(ip: str) -> bool:
+        if not RequestHandler.is_instantiated:
+            RequestHandler.url = RequestHandler.url.format(ip=ip)
+            RequestHandler.get_request(param=RequestHandler.test_param)
             return True
-        else:
-            return False
