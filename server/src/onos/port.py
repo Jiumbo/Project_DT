@@ -1,8 +1,9 @@
 from pydantic import BaseModel, ValidationError
-from typing import ClassVar
+from typing import ClassVar, Optional
 from onos.port_annotations import PortAnnotations
 from onos.statistic import Statistics
 from onos.request_handler import RequestHandler
+from onos import logger
 
 
 class Port(BaseModel):
@@ -16,13 +17,16 @@ class Port(BaseModel):
     type: str
     portSpeed: int
     annotations: PortAnnotations
-    statistics: Statistics = None
-    delta_statistics: Statistics = None
+    statistics: Optional[Statistics] = None
+    delta_statistics: Optional[Statistics] = None
 
-    def set_statistics(self, device_id: str) -> bool:
+    def __init__(self, **kargs) -> None:
+        super().__init__(**kargs)
+
+    def set_statistics(self, device_id: str, requester: RequestHandler) -> bool:
         try:
             if self.port != "local":
-                response = RequestHandler.get_request(
+                response = requester.get_request(
                     param=Port.param_statistics.format(
                         device_id=device_id, port_id=self.port
                     )
@@ -30,14 +34,14 @@ class Port(BaseModel):
                 response = response["statistics"][0]["ports"][0]
                 self.statistics = Statistics(**response)
         except ValidationError as e:
-            print(f"Validation Error: {e}")
+            logger.error(f"Validation Error: {e}")
         except Exception as e:
-            print(f"Error in {self.__class__.__name__}: {e}")
+            logger.error(f"Error in {self.__class__.__name__}: {e}")
 
-    def set_delta_statistics(self, device_id: str) -> bool:
+    def set_delta_statistics(self, device_id: str, requester: RequestHandler) -> bool:
         try:
             if self.port != "local":
-                response = RequestHandler.get_request(
+                response = requester.get_request(
                     param=Port.param_delta_statisctics.format(
                         device_id=device_id, port_id=self.port
                     )
@@ -45,6 +49,6 @@ class Port(BaseModel):
                 response = response["statistics"][0]["ports"][0]
                 self.delta_statistics = Statistics(**response)
         except ValidationError as e:
-            print(f"Validation Error: {e}")
+            logger.error(f"Validation Error: {e}")
         except Exception as e:
-            print(f"Error in {self.__class__.__name__}: {e}")
+            logger.error(f"Error in {self.__class__.__name__}: {e}")

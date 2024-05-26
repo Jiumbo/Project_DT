@@ -3,6 +3,7 @@ from typing import List, ClassVar
 from onos.request_handler import RequestHandler
 from onos.device import Device
 from onos.host import Host
+from onos import logger
 
 
 class Cluster(BaseModel):
@@ -17,28 +18,26 @@ class Cluster(BaseModel):
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-        self.__set_devices()
-        self.__set_hosts()
 
-    def __set_devices(self) -> bool:
+    def set_devices(self, requester: RequestHandler) -> bool:
         try:
-            response = RequestHandler.get_request(
+            response = requester.get_request(
                 Cluster.param_cluster_id.format(cluster_id=self.id)
             )
             devices_id = response["devices"]
             for device_id in devices_id:
-                response = RequestHandler.get_request(
+                response = requester.get_request(
                     Cluster.param_device_id.format(device_id=device_id)
                 )
                 self.devices.append(Device(**response))
         except ValidationError as e:
-            print(f"Validation Error: {e}")
+            logger.error(f"Validation Error: {e}")
         except Exception as e:
-            print(f"Error in {self.__class__.__name__}: {e}")
+            logger.error(f"Error in {self.__class__.__name__}: {e}")
 
-    def __set_hosts(self) -> bool:
+    def set_hosts(self, requester: RequestHandler) -> bool:
         try:
-            response = RequestHandler.get_request(param=Cluster.param_hosts)
+            response = requester.get_request(param=Cluster.param_hosts)
             for host in response["hosts"]:
                 element = Host(**host)
                 for device in self.devices:
@@ -46,6 +45,28 @@ class Cluster(BaseModel):
                         if location.elementId == device.id:
                             device.add_host(host=element)
         except ValidationError as e:
-            print(f"Validation Error: {e}")
+            logger.error(f"Validation Error: {e}")
         except Exception as e:
-            print(f"Error in {self.__class__.__name__}: {e}")
+            logger.error(f"Error in {self.__class__.__name__}: {e}")
+
+    def set_device_flows(self, requester: RequestHandler):
+        for device in self.devices:
+            device.set_flows(requester=requester)
+
+    def set_device_flows_table(self, requester: RequestHandler):
+        for device in self.devices:
+            device.set_flows_table(requester=requester)
+
+    def set_device_port_statistics(self, requester: RequestHandler):
+        for device in self.devices:
+            device.set_statistics(requester=requester)
+
+    def set_device_port_delta_statistics(self, requester: RequestHandler):
+        for device in self.devices:
+            device.set_delta_statistics(requester=requester)
+
+    def get_last_update(self):
+        datetime = []
+        for device in self.devices:
+            datetime.append(device.lastUpdate)
+        return datetime
