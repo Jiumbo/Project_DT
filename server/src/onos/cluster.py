@@ -65,7 +65,12 @@ class Cluster(BaseModel):
         for device in self.devices:
             device.set_delta_statistics(requester=requester)
 
-    def get_last_update(self):
+    def get_device_by_id(self, device_id: str) -> Device:
+        for device in self.devices:
+            if device.id == device_id:
+                return device
+
+    def get_last_update(self) -> list:
         datetime = []
         for device in self.devices:
             datetime.append(device.lastUpdate)

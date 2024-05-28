@@ -19,7 +19,7 @@ class APIService:
             self.blockchain = self.__load_blockchain()
         else:
             self.blockchain = BlockChain()
-        self.network = self.__set_network(ip=ip)
+        # self.network = self.__set_network(ip=ip) #Per non avviare le VM
 
     def __load_blockchain(self) -> BlockChain:
         logger.info("Loading previouse BlockChain")
