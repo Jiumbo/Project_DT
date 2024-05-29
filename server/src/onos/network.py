@@ -15,7 +15,9 @@ class Network(BaseModel):
 
     def __init__(self, requester: RequestHandler = None, **kwargs) -> None:
         super().__init__(**kwargs)
-        if type(requester) is RequestHandler: #Used this strategy to load a Network by an old version
+        if (
+            type(requester) is RequestHandler
+        ):  # Used this strategy to load a Network by an old version
             self.requester = requester
 
     def update(self) -> bool:
@@ -28,6 +30,7 @@ class Network(BaseModel):
         self.clusters.set_devices_flows_table(requester=self.requester)
         self.clusters.set_devices_port_statistics(requester=self.requester)
         self.clusters.set_devices_port_delta_statistics(requester=self.requester)
+        self.clusters.set_device_hosts(requester=self.requester)
         logger.info("Finished updating data")
 
     def __set_clusters(self) -> Clusters:

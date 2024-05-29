@@ -34,6 +34,10 @@ class Clusters(BaseModel):
         for cluster in self.clusters:
             cluster.set_device_port_delta_statistics(requester=requester)
 
+    def set_device_hosts(self, requester: RequestHandler):
+        for cluster in self.clusters:
+            cluster.set_hosts(requester=requester)
+
     def get_last_update(self):
         datetime = []
         for cluster in self.clusters:

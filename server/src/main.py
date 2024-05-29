@@ -38,7 +38,7 @@ async def lifespan(app: FastAPI):
     ip = parse_args().ip
     global service
     service = APIService(ip=ip)
-    # asyncio.create_task(save_record()) #Per non avviare le VM
+    # asyncio.create_task(save_record())  # Per non avviare le VM
     yield
     service.save_blockchain()
 
@@ -157,7 +157,7 @@ async def get_device_flows(record_id: int, cluster_id: int, device_id: str):
 
 
 """ 
-Esempio risposta : Get Device Ports (Sto valutando se tenere o meno le statistiche o farle a parte)
+Esempio risposta : Get Device Ports
 {
     "ports": [
         {
@@ -171,8 +171,6 @@ Esempio risposta : Get Device Ports (Sto valutando se tenere o meno le statistic
                 "portMac": "5a:64:38:ca:4c:47",
                 "portName": "s3",
             },
-            "statistics": null,
-            "delta_statistics": null,
         }
     ]
 } """
@@ -185,6 +183,86 @@ async def get_device_ports(record_id: int, cluster_id: int, device_id: str):
         device_id=device_id
     )
     return device.model_dump(include={"ports"})
+
+
+""" 
+Esempio risposta : Get Device Ports Statistics
+{
+    "ports": [
+        {
+            "port": "1",
+            "isEnabled": true,
+            "portSpeed": 10000,
+            "statistics": {
+                "packetsReceived": 3302,
+                "packetsSent": 3301,
+                "bytesReceived": 457680,
+                "bytesSent": 457638,
+                "packetsRxDropped": 0,
+                "packetsTxDropped": 0,
+                "packetsRxErrors": 0,
+                "packetsTxErrors": 0,
+                "durationSec": 5097,
+            },
+        },
+    ]
+} """
+
+
+@app.get("/{record_id}/{cluster_id}/{device_id}/ports/statistics")
+async def get_device_ports_statistics(record_id: int, cluster_id: int, device_id: str):
+    network = get_network(record_id=record_id)
+    device = network.clusters.get_cluster_by_id(cluster_id=cluster_id).get_device_by_id(
+        device_id=device_id
+    )
+    ports = device.model_dump(include={"ports"})
+    for port in ports.get("ports"):
+        port.pop("element")
+        port.pop("type")
+        port.pop("annotations")
+        port.pop("delta_statistics")
+    return ports
+
+
+""" 
+Esempio risposta : Get Device Ports Delta Statistics
+{
+    "ports": [
+        {
+            "port": "1",
+            "isEnabled": true,
+            "portSpeed": 10000,
+            "delta_statistics": {
+                "packetsReceived": 2,
+                "packetsSent": 2,
+                "bytesReceived": 278,
+                "bytesSent": 278,
+                "packetsRxDropped": 0,
+                "packetsTxDropped": 0,
+                "packetsRxErrors": 0,
+                "packetsTxErrors": 0,
+                "durationSec": 4,
+            },
+        },
+    ]
+} """
+
+
+@app.get("/{record_id}/{cluster_id}/{device_id}/ports/delta_statistics")
+async def get_device_ports_delta_statistics(
+    record_id: int, cluster_id: int, device_id: str
+):
+    network = get_network(record_id=record_id)
+    device = network.clusters.get_cluster_by_id(cluster_id=cluster_id).get_device_by_id(
+        device_id=device_id
+    )
+    ports = device.model_dump(include={"ports"})
+    for port in ports.get("ports"):
+        port.pop("element")
+        port.pop("type")
+        port.pop("annotations")
+        port.pop("statistics")
+    return ports
 
 
 """ 
@@ -208,6 +286,87 @@ async def get_device_tables(record_id: int, cluster_id: int, device_id: str):
         device_id=device_id
     )
     return device.model_dump(include={"tables"})
+
+
+""" 
+Esempio risposta : Get Device Hosts
+{
+    "hosts": [
+        {
+            "id": "00:00:00:00:00:02/None",
+            "mac": "00:00:00:00:00:02",
+            "vlan": "None",
+            "innerVlan": "None",
+            "outerTpid": "unknown",
+            "configured": false,
+            "ipAddresses": ["10.0.0.2"],
+            "locations": [{"elementId": "of:0000000000000002", "port": "2"}],
+        }
+    ]
+} """
+
+
+@app.get("/{record_id}/{cluster_id}/{device_id}/hosts")
+async def get_device_hosts(record_id: int, cluster_id: int, device_id: str):
+    network = get_network(record_id=record_id)
+    device = network.clusters.get_cluster_by_id(cluster_id=cluster_id).get_device_by_id(
+        device_id=device_id
+    )
+    return device.model_dump(include={"hosts"})
+
+
+""" 
+Esempio risposta : Get Metrics
+{
+  "counter": 3,
+  "mean_rate": 0.0005674165815012536,
+  "rate_1_min": 3.157016537695781e-40,
+  "rate_5_min": 2.2910853364402713e-10,
+  "rate_15_min": 0.000009467268992346153,
+  "mean": 37,
+  "min": 9,
+  "max": 59,
+  "stddev": 25
+} """
+
+
+@app.get("/{record_id}/metrics")
+async def get_metrics(record_id: int):
+    network = get_network(record_id=record_id)
+    return network.metrics.model_dump()
+
+
+"""
+Esempio risposta : Get System
+{
+  "node": "192.168.56.105",
+  "version": "2.0.0",
+  "clusterId": "default",
+  "nodes": 1,
+  "devices": 3,
+  "links": 4,
+  "hosts": 4,
+  "sccs": 1,
+  "flows": 12,
+  "intents": 0,
+  "mem": {
+    "current": 247830968,
+    "max": 1116733440,
+    "committed": 403701760
+  },
+  "threads": {
+    "live": 372,
+    "daemon": 354,
+    "peak": 374
+  }
+}
+"""
+
+
+@app.get("/{record_id}/system")
+async def get_system(record_id: int):
+    network = get_network(record_id=record_id)
+    return network.system.model_dump()
 
 
 if __name__ == "__main__":
