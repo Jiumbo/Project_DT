@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clusters
+{% endblock%}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Clusters</h1>
+    <div class="row">
+        {% for item in data %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0 rounded-lg">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Cluster {{ item.id }}</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ item.id }}</p>
+                    <p class="card-text"><strong>Device Count:</strong> {{ item.deviceCount }}</p>
+                    <p class="card-text"><strong>Link Count:</strong> {{ item.linkCount }}</p>
+                    <p class="card-text"><strong>Root:</strong> {{ item.root }}</p>
+                    <a href="{{ url_for( 'user.devices' )}}?record-id={{record_id}}&cluster-id={{item.get('id')}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-desktop"></i> Devices</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

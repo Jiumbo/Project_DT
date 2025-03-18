@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class BlockChain(BaseModel):
-    chain: List[Block] = []
+    records: List[Block] = []
     chain_dict: Dict[int, Block] = {}
 
     def __init__(self, **kwargs) -> None:
@@ -18,27 +18,27 @@ class BlockChain(BaseModel):
     def __mine_genesis_block(self):
         random.seed("Genesis")
         genesis_block = Block(
-            id=len(self.chain),
+            id=len(self.records),
             data="Genesis Block",
             nonce=random.randint(0, 9999),
-            timestamp=datetime.now().timestamp(),
+            timestamp=datetime.now(),  # .timestamp(),
             previous_hash=None,
         )
-        self.chain.append(genesis_block)
+        self.records.append(genesis_block)
 
     def mine_block(self, data: str, ttl: List) -> None:
         new_block = Block(
-            id=len(self.chain),
+            id=len(self.records),
             data=data,
             nonce=min(ttl),
-            timestamp=datetime.now().timestamp(),
-            previous_hash=self.chain[-1].hash,
+            timestamp=datetime.now(),  # .timestamp(), To get the float
+            previous_hash=self.records[-1].hash,
         )
-        self.chain.append(new_block)
+        self.records.append(new_block)
         self.chain_dict[new_block.id] = new_block
 
     def get_chain(self) -> List:
-        return self.chain
+        return self.records
 
     def get_block(self, block_id: int) -> str:
         try:

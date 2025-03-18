@@ -1,0 +1,32 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+aside {
+    /* width: 250px; */
+    padding: 20px 0;
+}
+
+/* .nav-link {
+    transition: color 0.5s;
+} */
+
+/* .nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+    background-color: #5a5a5a;
+    color: #fff !important;
+} */
+
+.nav-link {
+    color: #ffffff !important;
+}
+
+/* .nav-link:hover,
+    .nav-link:focus,
+    .nav-link:active {
+        background-color: #ffffff;
+        color: #000000 !important;
+    } */

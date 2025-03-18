@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Ports
+{% endblock%}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Ports</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Port</th>
+                    <th>Is Enabled</th>
+                    <th>Type</th>
+                    <th>Port Speed</th>
+                    <th>Admin State</th>
+                    <th>Port Mac</th>
+                    <th>Port Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.port }}</td>
+                    <td>{{ item.isEnabled }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.portSpeed }}</td>
+                    <td>{{ item.annotations.adminState }}</td>
+                    <td>{{ item.annotations.portMac }}</td>
+                    <td>{{ item.annotations.portName }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

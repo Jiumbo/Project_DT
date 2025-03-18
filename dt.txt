@@ -1,0 +1,865 @@
+{
+  "system": {
+    "node": "192.168.56.105",
+    "version": "2.0.0",
+    "clusterId": "default",
+    "nodes": 1,
+    "devices": 3,
+    "links": 4,
+    "hosts": 4,
+    "sccs": 1,
+    "flows": 12,
+    "intents": 0,
+    "mem": {
+      "current": 425798968,
+      "max": 1116733440,
+      "committed": 515899392
+    },
+    "threads": {
+      "live": 388,
+      "daemon": 370,
+      "peak": 388
+    }
+  },
+  "metrics": {
+    "counter": 6.0,
+    "mean_rate": 0.011179159494988131,
+    "rate_1_min": 0.013752857805185035,
+    "rate_5_min": 0.009475768207744676,
+    "rate_15_min": 0.004923605266040889,
+    "mean": 9.0,
+    "min": 3.0,
+    "max": 16.0,
+    "stddev": 4.0
+  },
+  "clusters": {
+    "clusters": [
+      {
+        "id": 0,
+        "deviceCount": 3,
+        "linkCount": 4,
+        "root": "of:0000000000000001",
+        "devices": [
+          {
+            "id": "of:0000000000000003",
+            "type": "SWITCH",
+            "available": true,
+            "role": "MASTER",
+            "mfr": "Nicira, Inc.",
+            "hw": "Open vSwitch",
+            "sw": "2.13.1",
+            "serial": "None",
+            "driver": "ovs",
+            "chassisId": 3,
+            "lastUpdate": 1715957668554,
+            "humanReadableLastUpdate": "connected 1m18s ago",
+            "annotations": {
+              "channelId": "192.168.56.102:35966",
+              "managementAddress": "192.168.56.102",
+              "protocol": "OF_14"
+            },
+            "ports": [
+              {
+                "element": "of:0000000000000003",
+                "port": "local",
+                "isEnabled": false,
+                "type": "copper",
+                "portSpeed": 0,
+                "annotations": {
+                  "adminState": "disabled",
+                  "portMac": "5a:64:38:ca:4c:47",
+                  "portName": "s3"
+                },
+                "statistics": null,
+                "delta_statistics": null
+              },
+              {
+                "element": "of:0000000000000003",
+                "port": "1",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "b2:9f:33:60:b6:b4",
+                  "portName": "s3-eth1"
+                },
+                "statistics": {
+                  "packetsReceived": 12,
+                  "packetsSent": 66,
+                  "bytesReceived": 840,
+                  "bytesSent": 8152,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 0,
+                  "packetsSent": 4,
+                  "bytesReceived": 0,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 5
+                }
+              },
+              {
+                "element": "of:0000000000000003",
+                "port": "2",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "52:0b:8f:bd:ec:7b",
+                  "portName": "s3-eth2"
+                },
+                "statistics": {
+                  "packetsReceived": 12,
+                  "packetsSent": 66,
+                  "bytesReceived": 840,
+                  "bytesSent": 8152,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 0,
+                  "packetsSent": 4,
+                  "bytesReceived": 0,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 5
+                }
+              },
+              {
+                "element": "of:0000000000000003",
+                "port": "3",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "6a:0a:60:9c:5a:7a",
+                  "portName": "s3-eth3"
+                },
+                "statistics": {
+                  "packetsReceived": 68,
+                  "packetsSent": 69,
+                  "bytesReceived": 8348,
+                  "bytesSent": 8390,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 4,
+                  "packetsSent": 4,
+                  "bytesReceived": 556,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 5
+                }
+              }
+            ],
+            "flows": [
+              {
+                "id": "281476156249461",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000003",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 26,
+                "bytes": 3614,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744581,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x8942"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281476661728682",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000003",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 26,
+                "bytes": 3614,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744581,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x88cc"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281478170942982",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 5,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000003",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 10,
+                "bytes": 980,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744581,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x800"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281477764386537",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000003",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 20,
+                "bytes": 840,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744581,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x806"
+                    }
+                  ]
+                }
+              }
+            ],
+            "hosts": [],
+            "tables": [
+              {
+                "tableId": "0",
+                "activeEntries": 4,
+                "packetsLookedUp": 92,
+                "packetsMatched": 92
+              }
+            ]
+          },
+          {
+            "id": "of:0000000000000001",
+            "type": "SWITCH",
+            "available": true,
+            "role": "MASTER",
+            "mfr": "Nicira, Inc.",
+            "hw": "Open vSwitch",
+            "sw": "2.13.1",
+            "serial": "None",
+            "driver": "ovs",
+            "chassisId": 1,
+            "lastUpdate": 1715957668552,
+            "humanReadableLastUpdate": "connected 1m18s ago",
+            "annotations": {
+              "channelId": "192.168.56.102:35964",
+              "managementAddress": "192.168.56.102",
+              "protocol": "OF_14"
+            },
+            "ports": [
+              {
+                "element": "of:0000000000000001",
+                "port": "local",
+                "isEnabled": false,
+                "type": "copper",
+                "portSpeed": 0,
+                "annotations": {
+                  "adminState": "disabled",
+                  "portMac": "72:c8:e7:65:ff:47",
+                  "portName": "s1"
+                },
+                "statistics": null,
+                "delta_statistics": null
+              },
+              {
+                "element": "of:0000000000000001",
+                "port": "1",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "4a:21:82:ab:05:cb",
+                  "portName": "s1-eth1"
+                },
+                "statistics": {
+                  "packetsReceived": 71,
+                  "packetsSent": 69,
+                  "bytesReceived": 8474,
+                  "bytesSent": 8390,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 4,
+                  "packetsSent": 4,
+                  "bytesReceived": 556,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 4
+                }
+              },
+              {
+                "element": "of:0000000000000001",
+                "port": "2",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "52:3b:19:c5:88:57",
+                  "portName": "s1-eth2"
+                },
+                "statistics": {
+                  "packetsReceived": 69,
+                  "packetsSent": 68,
+                  "bytesReceived": 8390,
+                  "bytesSent": 8348,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 4,
+                  "packetsSent": 4,
+                  "bytesReceived": 556,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 4
+                }
+              }
+            ],
+            "flows": [
+              {
+                "id": "281475012051420",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 5,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000001",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 8,
+                "bytes": 784,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x800"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281477466379610",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000001",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 50,
+                "bytes": 6950,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x88cc"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281477029321583",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000001",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 50,
+                "bytes": 6950,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x8942"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281478909873038",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000001",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 20,
+                "bytes": 840,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x806"
+                    }
+                  ]
+                }
+              }
+            ],
+            "hosts": [],
+            "tables": [
+              {
+                "tableId": "0",
+                "activeEntries": 4,
+                "packetsLookedUp": 140,
+                "packetsMatched": 136
+              }
+            ]
+          },
+          {
+            "id": "of:0000000000000002",
+            "type": "SWITCH",
+            "available": true,
+            "role": "MASTER",
+            "mfr": "Nicira, Inc.",
+            "hw": "Open vSwitch",
+            "sw": "2.13.1",
+            "serial": "None",
+            "driver": "ovs",
+            "chassisId": 2,
+            "lastUpdate": 1715957668557,
+            "humanReadableLastUpdate": "connected 1m18s ago",
+            "annotations": {
+              "channelId": "192.168.56.102:35968",
+              "managementAddress": "192.168.56.102",
+              "protocol": "OF_14"
+            },
+            "ports": [
+              {
+                "element": "of:0000000000000002",
+                "port": "local",
+                "isEnabled": false,
+                "type": "copper",
+                "portSpeed": 0,
+                "annotations": {
+                  "adminState": "disabled",
+                  "portMac": "62:11:5c:44:a1:4a",
+                  "portName": "s2"
+                },
+                "statistics": null,
+                "delta_statistics": null
+              },
+              {
+                "element": "of:0000000000000002",
+                "port": "1",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "3a:55:74:47:1b:a4",
+                  "portName": "s2-eth1"
+                },
+                "statistics": {
+                  "packetsReceived": 14,
+                  "packetsSent": 67,
+                  "bytesReceived": 924,
+                  "bytesSent": 8194,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 0,
+                  "packetsSent": 4,
+                  "bytesReceived": 0,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 4
+                }
+              },
+              {
+                "element": "of:0000000000000002",
+                "port": "2",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "0e:8d:fc:33:29:ce",
+                  "portName": "s2-eth2"
+                },
+                "statistics": {
+                  "packetsReceived": 12,
+                  "packetsSent": 69,
+                  "bytesReceived": 840,
+                  "bytesSent": 8278,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 0,
+                  "packetsSent": 4,
+                  "bytesReceived": 0,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 4
+                }
+              },
+              {
+                "element": "of:0000000000000002",
+                "port": "3",
+                "isEnabled": true,
+                "type": "copper",
+                "portSpeed": 10000,
+                "annotations": {
+                  "adminState": "enabled",
+                  "portMac": "56:5e:7a:5d:55:98",
+                  "portName": "s2-eth3"
+                },
+                "statistics": {
+                  "packetsReceived": 69,
+                  "packetsSent": 71,
+                  "bytesReceived": 8390,
+                  "bytesSent": 8474,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 76
+                },
+                "delta_statistics": {
+                  "packetsReceived": 4,
+                  "packetsSent": 4,
+                  "bytesReceived": 556,
+                  "bytesSent": 556,
+                  "packetsRxDropped": 0,
+                  "packetsTxDropped": 0,
+                  "packetsRxErrors": 0,
+                  "packetsTxErrors": 0,
+                  "durationSec": 4
+                }
+              }
+            ],
+            "flows": [
+              {
+                "id": "281475568191580",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 5,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000002",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 10,
+                "bytes": 980,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x800"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281475022575828",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000002",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 25,
+                "bytes": 3475,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744587,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x88cc"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281478316350853",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000002",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 23,
+                "bytes": 966,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744587,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x806"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "281478673389323",
+                "tableId": "0",
+                "appId": "org.onosproject.core",
+                "groupId": 0,
+                "priority": 40000,
+                "timeout": 0,
+                "isPermanent": true,
+                "deviceId": "of:0000000000000002",
+                "state": "ADDED",
+                "life": 75,
+                "packets": 24,
+                "bytes": 3336,
+                "liveType": "UNKNOWN",
+                "lastSeen": 1715957744588,
+                "treatment": {
+                  "instructions": [
+                    {
+                      "type": "OUTPUT",
+                      "port": "CONTROLLER"
+                    }
+                  ],
+                  "clearDeferred": true,
+                  "deferred": []
+                },
+                "selector": {
+                  "criteria": [
+                    {
+                      "type": "ETH_TYPE",
+                      "ethType": "0x8942"
+                    }
+                  ]
+                }
+              }
+            ],
+            "hosts": [],
+            "tables": [
+              {
+                "tableId": "0",
+                "activeEntries": 4,
+                "packetsLookedUp": 95,
+                "packetsMatched": 92
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+}

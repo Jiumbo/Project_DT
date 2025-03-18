@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clusters
+{% endblock%}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#statistics-table').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "pageLength": 10,
+            "lengthMenu": [5, 10, 25, 50],
+            /*"language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "zeroRecords": "Nessun risultato trovato",
+                "info": "Pagina _PAGE_ di _PAGES_",
+                "infoEmpty": "Nessun record disponibile",
+                "infoFiltered": "(filtrati da _MAX_ record totali)",
+                "search": "Cerca:",
+                "paginate": {
+                    "first": "Prima",
+                    "last": "Ultima",
+                    "next": "Successiva",
+                    "previous": "Precedente"
+                }
+            }*/
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Statistics</h1>
+    <table id="statistics-table" class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Port</th>
+                <th>Is Enabled</th>
+                <th>Port Speed</th>
+                <th>Packet Received</th>
+                <th>Packet Sent</th>
+                <th>Bytes Received</th>
+                <th>Bytes Sent</th>
+                <th>Packets Rx Dropped</th>
+                <th>Packets Tx Dropped</th>
+                <th>Packets Rx Errors</th>
+                <th>Packets Tx Errors</th>
+                <th>Duration sec</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.port }}</td>
+                <td>{{ item.isEnabled }}</td>
+                <td>{{ item.portSpeed }}</td>
+                <td>{{ item.statistics.packetsReceived }}</td>
+                <td>{{ item.statistics.packetsSent }}</td>
+                <td>{{ item.statistics.bytesReceived }}</td>
+                <td>{{ item.statistics.bytesSent }}</td>
+                <td>{{ item.statistics.packetsRxDropped }}</td>
+                <td>{{ item.statistics.packetsTxDropped }}</td>
+                <td>{{ item.statistics.packetsRxErrors }}</td>
+                <td>{{ item.statistics.packetsTxErrors }}</td>
+                <td>{{ item.statistics.durationSec }}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

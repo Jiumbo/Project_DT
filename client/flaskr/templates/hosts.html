@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Hosts
+{% endblock%}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Hosts</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Host Id</th>
+                    <th>Mac</th>
+                    <th>Vlan</th>
+                    <th>Configured</th>
+                    <th>Ip Addresses</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.mac }}</td>
+                    <td>{{ item.vlan }}</td>
+                    <td>{{ item.configured }}</td>
+                    <td>{{ ' '.join(item.ipAddresses) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

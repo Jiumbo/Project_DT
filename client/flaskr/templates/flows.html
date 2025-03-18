@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Flows
+{% endblock%}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#flows-table').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "pageLength": 10,
+            "lengthMenu": [5, 10, 25, 50],
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Flows</h1>
+    <table id="flows-table" class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Flow Id</th>
+                <th>Group Id</th>
+                <th>Priority</th>
+                <th>Timeout</th>
+                <th>State</th>
+                <th>Life</th>
+                <th>Packets</th>
+                <th>Bytes</th>
+                <th>Last Seen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.groupId }}</td>
+                <td>{{ item.priority }}</td>
+                <td>{{ item.timeout }}</td>
+                <td>{{ item.state }}</td>
+                <td>{{ item.life }}</td>
+                <td>{{ item.packets }}</td>
+                <td>{{ item.bytes }}</td>
+                <td>{{ item.lastSeen }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

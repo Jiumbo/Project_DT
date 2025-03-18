@@ -1,21 +1,19 @@
-from flask import Flask, render_template, request
-from flaskr.routes.index import index_bp
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template, request, redirect, url_for
+from routes.login import login_bp
+from routes.user import user_bp
+from routes.graphs import graph_bp
 
 app = Flask(__name__)
-socketio = SocketIO(app=app)
-
-app.register_blueprint(index_bp)
-
-
-@app.route("/socket")
-def socket():
-    return render_template("test_socket.html")
+app.secret_key = "chiave"
+app.register_blueprint(login_bp)
+app.register_blueprint(user_bp)
+app.register_blueprint(graph_bp)
 
 
-@socketio.on("connect")
-def test_connect():
-    pass
+@app.route("/")
+def index():
+    return redirect(url_for("login.login"))
 
 
-
+if __name__ == "__main__":
+    app.run(debug=True, port=8080)

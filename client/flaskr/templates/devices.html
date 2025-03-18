@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Devices
+{% endblock%}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="mb-3">Devices</h1>
+    <div class="row">
+        {% for item in data %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0 rounded-lg">
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Devices {{ item.id }}</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ item.id }}</p>
+                    <p class="card-text"><strong>Type:</strong> {{ item.type }}</p>
+                    <p class="card-text"><strong>Role:</strong> {{ item.role }}</p>
+                    <p class="card-text"><strong>Hardware:</strong> {{ item.hw }}</p>
+                    <p class="card-text"><strong>Software:</strong> {{ item.sw }}</p>
+                    <p class="card-text"><strong>Chassis Id:</strong> {{ item.chassisId }}</p>
+                    <p class="card-text"><strong>Last Update:</strong> {{ item.humanReadableLastUpdate }}</p>
+                    <p class="card-text"><strong>Channel ID:</strong> {{ item.annotations.channelId }}</p>
+                    <p class="card-text"><strong>Management Address:</strong> {{ item.annotations.managementAddress }}
+                    </p>
+                    <p class="card-text"><strong>Protocols:</strong> {{ item.annotations.protocol }}</p>
+                    <a href="{{ url_for( 'user.hosts' )}}?record-id={{record_id}}&cluster-id={{cluster_id}}&device-id={{item.id}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-network-wired"></i> Hosts</a>
+                    <a href="{{ url_for( 'user.flows' )}}?record-id={{record_id}}&cluster-id={{cluster_id}}&device-id={{item.id}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-diagram-project"></i> Flows</a>
+                    <a href="{{ url_for( 'user.statistics' )}}?record-id={{record_id}}&cluster-id={{cluster_id}}&device-id={{item.id}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-chart-simple"></i> Statistics</a>
+                    <a href="{{ url_for( 'user.ports' )}}?record-id={{record_id}}&cluster-id={{cluster_id}}&device-id={{item.id}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-ethernet"></i> Ports</a>
+                    <a href="{{ url_for( 'user.tables' )}}?record-id={{record_id}}&cluster-id={{cluster_id}}&device-id={{item.id}}"
+                        class="btn btn-primary btn-block mt-3"><i class="fa-solid fa-table-cells-large"></i> Tables</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

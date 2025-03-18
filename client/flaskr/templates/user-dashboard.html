@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock%}
+
+{% block content %}
+<div class="row h-50">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm bg-light p-4">
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <a href="{{ url_for('user.records')}}" class="stretched-link text-dark h1 text-decoration-none">
+                    <i class="fa-solid fa-database"></i> Records </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <a href="{{ url_for('graph.metrics_graph')}}" class="stretched-link text-dark h1 text-decoration-none">
+                    <i class="fa-solid fa-chart-line"></i> System Metrics</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row h-50">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <a href="#section2" class="stretched-link text-dark h2"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body d-flex align-items-center justify-content-center">
+                <a href="#section2" class="stretched-link text-dark h2"></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -6,11 +6,11 @@
 from pydantic import BaseModel
 from typing import Optional
 from hashlib import sha256
-
+from datetime import datetime
 
 class Block(BaseModel):
     id: int
-    timestamp: float
+    timestamp: datetime
     data: str
     nonce: int
     previous_hash: str | None
